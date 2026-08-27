@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,5 +16,5 @@ import { AppComponent } from './app.component';
         AppRoutingModule,
         BrowserAnimationsModule,
         MatToolbarModule,
-        MatIconModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        MatIconModule], providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())] })
 export class AppModule { }

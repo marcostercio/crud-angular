@@ -2,7 +2,6 @@
 
 @use '@angular/material' as mat;
 
-
 $custom-app-primary: mat.m2-define-palette(mat.$m2-blue-palette);
 
 $custom-app-secondary: mat.m2-define-palette(
@@ -24,6 +23,10 @@ $custom-theme: mat.m2-define-light-theme((
 
 @include mat.all-component-themes($custom-theme);
 
+// necessário nas versões novas do Material para as classes mat-elevation-zN funcionarem
+@include mat.elevation-classes();
+@include mat.app-background();
+
 html, body {
   height: 100%;
 }
@@ -32,3 +35,4 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+

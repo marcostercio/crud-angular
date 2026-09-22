@@ -1,0 +1,33 @@
+
+mat-card{
+  width: 80%;
+  max-width: 900px;
+  margin:2em auto;
+  text-align: center;
+
+}
+
+.column-flex{
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+// .example-card {
+//   width: 98%;
+//  // max-width: 1200px;
+//   margin: 1% auto 0;
+// }
+
+.loading-spinner{
+  padding:25px;
+  background:rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.test{
+  background-color: red;
+  padding: 30px;
+}

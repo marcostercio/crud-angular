@@ -1,0 +1,23 @@
+<mat-card class="example-card"  appearance="outlined">
+  <mat-toolbar color="primary">
+    <span>Cursos Disponíveis</span>
+  </mat-toolbar>
+
+  <div class="column-flex mat-elevation-z8 ">
+    @if (courses$ | async; as courses) {
+
+    <app-courses-list
+    [courses]="courses"
+    (add) ="onAdd()"
+    (edit)="onEdit($event)"
+    (remove)="onRemove($event)"
+    ></app-courses-list>
+
+    } @else {
+    <div class="loading-spinner">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+
+    }
+  </div>
+</mat-card>

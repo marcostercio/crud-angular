@@ -16,5 +16,6 @@ import { AppComponent } from './app.component';
         AppRoutingModule,
         BrowserAnimationsModule,
         MatToolbarModule,
-        MatIconModule], providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())] })
+        MatIconModule
+      ], providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())] })
 export class AppModule { }

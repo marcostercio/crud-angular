@@ -1,3 +1,4 @@
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -10,7 +11,8 @@ import { CategoryPipe } from './pipes/category.pipe';
 @NgModule({
   declarations: [
     ErrorDialogComponent,
-    CategoryPipe
+    CategoryPipe,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { CategoryPipe } from './pipes/category.pipe';
   ],
   exports:[
     ErrorDialogComponent,
+    ConfirmationDialogComponent,
     CategoryPipe
   ]
 })

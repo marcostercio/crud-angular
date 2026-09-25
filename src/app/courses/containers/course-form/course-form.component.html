@@ -9,8 +9,8 @@
         <input matInput placeholder="Nome" formControlName="name" #name >
         <mat-hint align="end">{{name.value?.length || 0}}/100</mat-hint>
         @if (form.get('name')?.invalid) {
-      <mat-error>{{errorMessage("name")}}</mat-error>
-      }
+        <mat-error>{{errorMessage("name")}}</mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="full-width">
@@ -21,10 +21,54 @@
           <mat-option value="Back-end">Back-End</mat-option>
 
         </mat-select>
-          @if (form.get('category')?.invalid) {
-          <mat-error>{{errorMessage("category")}}</mat-error>
-          }
+            @if (form.get('category')?.invalid) {
+            <mat-error>{{errorMessage("category")}}</mat-error>
+            }
       </mat-form-field>
+      <mat-toolbar>
+        <span>Aulas</span>
+        <button mat-icon-button color="accent" type="button" (click)="addNewLesson()">
+          <mat-icon aria-label="Adicionar um novo">add</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      @if (isFormArrayRequired()) {
+      <mat-error class="form-array-error">
+        Adicione pelo menos uma aula.
+      </mat-error>
+      }
+      <table style="width: 100%;" formArrayName="lessons" *ngFor="let lesson of getLessonsFormArray().controls; let i = index">
+        <tr [formGroupName]="i">
+          <td style="width: 65%">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Nome das Aulas</mat-label>
+              <input matInput formControlName="name" #name/>
+                  @if (getLessonsFormArray().controls[i].get('name')?.invalid) {
+                    <mat-error>
+                      Campo inválido
+                    </mat-error>
+                    }
+            </mat-form-field>
+
+          </td>
+          <td style="width: 35%">
+            <mat-form-field appearance="fill" class="full-width">
+              <span matTextPrefix>https://youtu.be/</span>
+              <mat-label>Link das Aulas</mat-label>
+              <input matInput formControlName="youtubeUrl" #name/>
+                    @if (getLessonsFormArray().controls[i].get('youtubeUrl')?.invalid) {
+                    <mat-error>
+                      Campo inválido
+                    </mat-error>
+                    }
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-icon-button color="warn" type="button" (click)="removeLesson(i)">
+              <mat-icon aria-label="Remover">delete</mat-icon>
+            </button>
+        </tr>
+      </table>
     </form>
   </mat-card-content>
 

@@ -7,22 +7,21 @@
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="name" #name >
-        <mat-hint align="end">{{name.value?.length || 0}}/100</mat-hint>
+        <mat-hint align="end">{{name.value.length || 0}}/100</mat-hint>
         @if (form.get('name')?.invalid) {
-        <mat-error>{{errorMessage("name")}}</mat-error>
+        <mat-error>{{formUtils.errorMessage(form, 'name')}}</mat-error>
         }
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="category">
-          <mat-option value="null"></mat-option>
           <mat-option value="Front-end">Front-End</mat-option>
           <mat-option value="Back-end">Back-End</mat-option>
 
         </mat-select>
             @if (form.get('category')?.invalid) {
-            <mat-error>{{errorMessage("category")}}</mat-error>
+            <mat-error>{{formUtils.errorMessage(form, 'category')}}</mat-error>
             }
       </mat-form-field>
       <mat-toolbar>
@@ -32,7 +31,7 @@
         </button>
       </mat-toolbar>
 
-      @if (isFormArrayRequired()) {
+      @if (formUtils.isFormArrayRequired(form, 'lessons')) {
       <mat-error class="form-array-error">
         Adicione pelo menos uma aula.
       </mat-error>
@@ -45,7 +44,7 @@
               <input matInput formControlName="name" #name/>
                   @if (getLessonsFormArray().controls[i].get('name')?.invalid) {
                     <mat-error>
-                      Campo inválido
+                     {{formUtils.getFormArrayFieldErrorMessage(form, 'lessons','name', i)}}
                     </mat-error>
                     }
             </mat-form-field>
@@ -58,7 +57,7 @@
               <input matInput formControlName="youtubeUrl" #name/>
                     @if (getLessonsFormArray().controls[i].get('youtubeUrl')?.invalid) {
                     <mat-error>
-                      Campo inválido
+                      {{formUtils.getFormArrayFieldErrorMessage(form, 'lessons','youtubeUrl', i)}}
                     </mat-error>
                     }
             </mat-form-field>
@@ -74,7 +73,7 @@
 
   <mat-card-actions>
     <button matButton="elevated" color="primary" (click) = "onSubmit()">Salvar</button>
-    <button matButton="elevated" (click)="onCancel()">Cancelar</button>
+    <button matButton="elevated" (click)="formUtils.onCancel()">Cancelar</button>
   </mat-card-actions>
 
 </mat-card>

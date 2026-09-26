@@ -1,11 +1,15 @@
+import { Location } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { Service } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-@Service()
+@Injectable({ providedIn: 'root' })
 export class FormUtilsService {
-  constructor() {
+  constructor(
+    private location: Location,
+    private snackBar: MatSnackBar
+  ) { }
 
-  }
 
   validateAllFormFields(formGroup: UntypedFormGroup | UntypedFormArray) {
     Object.keys(formGroup.controls).forEach(field => {
@@ -54,5 +58,16 @@ export class FormUtilsService {
         const formArray = FormGroup.get(formArrayName) as UntypedFormArray;
         return !formArray.valid && formArray.hasError('required') && formArray.touched;
   }
+  onCancel(){
+    this.location.back();
+   }
+  onSucces(){
+    this.snackBar.open('Curso salvo com sucesso!','',{duration: 5000});
+    this.onCancel();
+   }
+  onError(){
+      this.snackBar.open('Erro ao salvar curso.','',{duration: 5000});
+   }
+
 
 }

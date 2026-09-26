@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../../services/courses.service';
 import { Course } from '../../model/course';
 import { Lesson } from '../../model/lesson';
+import { FormUtilsService } from '../../../shared/form/form-utils.service';
 
 @Component({
   selector: 'app-course-form',
@@ -20,9 +21,9 @@ export class CourseFormComponent implements OnInit {
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: CoursesService,
-    private snackBar: MatSnackBar,
-    private location : Location,
-    private route: ActivatedRoute
+
+    private route: ActivatedRoute,
+    public formUtils: FormUtilsService
     ) {
 
     }
@@ -105,23 +106,13 @@ export class CourseFormComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.service.save(this.form.value)
-        .subscribe(result => this.onSucces(), error => this.onError());
+        .subscribe(result => this.formUtils.onSucces(), error => this.formUtils.onError());
     }
     else{
-      alert('Formulário inválido');
+      this.formUtils.validateAllFormFields(this.form);
     }
 
   }
-   onCancel(){
-    this.location.back();
-   }
-   private onSucces(){
-    this.snackBar.open('Curso salvo com sucesso!','',{duration: 5000});
-    this.onCancel();
-   }
-   private onError(){
-      this.snackBar.open('Erro ao salvar curso.','',{duration: 5000});
-   }
 
 
 

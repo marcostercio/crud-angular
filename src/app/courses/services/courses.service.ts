@@ -1,8 +1,9 @@
+import { CoursePage } from './../model/course-page';
 import { Injectable } from '@angular/core';
 
 import { Course } from '../model/course';
 import { HttpClient } from '@angular/common/http';
-import { first, tap, delay } from 'rxjs';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,22 +16,13 @@ export class CoursesService {
 
   constructor(private httpClient:HttpClient) { }
 
-  list() {
-   // return
-     // { _id: '1', name: 'Angular', category: 'front-end' }
-      return this.httpClient.get<Course[]>(this.API)
-      .pipe(
-        first(),
-       // delay(5000),
-        // tap(courses => console.log(courses))
-      );
-
-
+  list(page = 0, pageSize = 10) {
+    return this.httpClient.get<CoursePage>(this.API, {
+      params: {   page, pageSize     }  }).pipe(first());
   }
 
   loadById(id: string){
-   return this.httpClient.get<Course>(`${this.API}/${id}`);
-   //return this.httpClient.get<Course>(`${this.API}/${id}`);
+    return this.httpClient.get<Course>(`${this.API}/${id}`);
   }
 
   save(record: Partial<Course>){

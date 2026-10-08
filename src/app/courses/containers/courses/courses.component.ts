@@ -10,13 +10,18 @@ import { Course } from '../../model/course';
 import { CoursesService } from '../../services/courses.service';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { CoursePage } from '../../model/course-page';
+import { MatCard } from '@angular/material/card';
+import { MatToolbar } from '@angular/material/toolbar';
+import { CoursesListComponent } from '../../components/courses-list/courses-list.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-courses',
     templateUrl: './courses.component.html',
     styleUrls: ['./courses.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatCard, MatToolbar, CoursesListComponent, MatPaginator, MatProgressSpinner, AsyncPipe]
 })
 export class CoursesComponent  {
  courses$: Observable <CoursePage> | null = null ;

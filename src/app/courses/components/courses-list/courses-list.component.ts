@@ -1,13 +1,32 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Course } from '../../model/course';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { MatIcon } from '@angular/material/icon';
+import { MatMiniFabButton, MatIconButton } from '@angular/material/button';
+import { CategoryPipe } from '../../../shared/pipes/category.pipe';
 
 @Component({
-  //imports: [],
-  selector: 'app-courses-list',
-  standalone:false,
-  styleUrl: './courses-list.component.scss',
-  templateUrl: './courses-list.component.html',
+    //imports: [],
+    selector: 'app-courses-list',
+    styleUrl: './courses-list.component.scss',
+    templateUrl: './courses-list.component.html',
+    imports: [
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatIcon,
+        MatMiniFabButton,
+        MatIconButton,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        CategoryPipe,
+    ],
 })
 export class CoursesListComponent {
 

@@ -1,7 +1,6 @@
-import { Location, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, UntypedFormArray, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 import { CoursesService } from '../../services/courses.service';
